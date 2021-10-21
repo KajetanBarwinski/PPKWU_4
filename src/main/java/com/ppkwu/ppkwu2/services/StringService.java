@@ -1,10 +1,12 @@
 package com.ppkwu.ppkwu2.services;
 
 import com.ppkwu.ppkwu2.serviceinterfaces.StringServiceInterface;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class StringService implements StringServiceInterface {
 
     @Override
