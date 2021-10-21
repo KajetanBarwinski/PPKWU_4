@@ -9,7 +9,7 @@ Przykładowe użycie:
 ![alt text](https://i.imgur.com/3smKiM2.png)
 
 # Analiza stringa z kombinacjami
-Struktura zapytania powinna wyglądać następująco: http://localhost:8080/count_string/tekst_ktory_chcemy_poddac_analizie/kombinacja_ktora_chcemy_zliczac
+Struktura zapytania powinna wyglądać następująco: http://localhost:8080/count_combinations/tekst_ktory_chcemy_poddac_analizie/kombinacja_ktora_chcemy_zliczac
 
 Funkcja ta działa identycznie do tej analizującej stringa bez kombinacji, lecz jest jedna różnica. Mapa zwracana w odpowiedzi posiada dodatkowy klucz "Combinations", którego wartością jest ilość zliczonych substringów w stringu
 
