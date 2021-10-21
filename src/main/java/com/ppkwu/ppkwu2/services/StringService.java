@@ -25,11 +25,11 @@ public class StringService implements StringServiceInterface {
                         characterOccurencesMap.get("Digits") + 1);
             } else if (Character.isLetter(input.charAt(i))) {
                 if (Character.isUpperCase(input.charAt(i)))
-                    characterOccurencesMap.put("lowercase letters",
-                            characterOccurencesMap.get("lowercase letters") + 1);
-                else
                     characterOccurencesMap.put("uppercase letters",
                             characterOccurencesMap.get("uppercase letters") + 1);
+                else
+                    characterOccurencesMap.put("lowercase letters",
+                            characterOccurencesMap.get("lowercase letters") + 1);
             } else if (Character.isWhitespace(input.charAt(i))) {
                 characterOccurencesMap.put("Whitespaces",
                         characterOccurencesMap.get("Whitespaces") + 1);
