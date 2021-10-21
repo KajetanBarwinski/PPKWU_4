@@ -24,8 +24,6 @@ public class StringService implements StringServiceInterface {
                 characterOccurencesMap.put("Digits",
                         characterOccurencesMap.get("Digits") + 1);
             } else if (Character.isLetter(input.charAt(i))) {
-                characterOccurencesMap.put("Letters",
-                        characterOccurencesMap.get("Letters") + 1);
                 if (Character.isUpperCase(input.charAt(i)))
                     characterOccurencesMap.put("lowercase letters",
                             characterOccurencesMap.get("lowercase letters") + 1);
