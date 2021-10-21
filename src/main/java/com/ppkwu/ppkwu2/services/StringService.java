@@ -14,8 +14,8 @@ public class StringService implements StringServiceInterface {
         HashMap<String, Integer> characterOccurencesMap = new HashMap<>();
 
         characterOccurencesMap.put("Digits", 0);
-        characterOccurencesMap.put("lowercase letters", 0);
-        characterOccurencesMap.put("uppercase letters", 0);
+        characterOccurencesMap.put("Lowercase letters", 0);
+        characterOccurencesMap.put("Uppercase letters", 0);
         characterOccurencesMap.put("Whitespaces", 0);
         characterOccurencesMap.put("Special characters", 0);
 
