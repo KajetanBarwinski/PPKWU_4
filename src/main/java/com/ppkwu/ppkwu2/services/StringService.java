@@ -2,6 +2,7 @@ package com.ppkwu.ppkwu2.services;
 
 import com.ppkwu.ppkwu2.serviceinterfaces.StringServiceInterface;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,5 +41,13 @@ public class StringService implements StringServiceInterface {
             }
         }
         return characterOccurencesMap;
+    }
+
+    @Override
+    public Map<String, Integer> countCombinationOccurences(String input,String combination) {
+        HashMap<String,Integer> occurencesMap = (HashMap<String, Integer>) countCharacterOccurences(input);
+        occurencesMap.put("Combination",StringUtils.countOccurrencesOf(input,combination));
+
+        return occurencesMap;
     }
 }
