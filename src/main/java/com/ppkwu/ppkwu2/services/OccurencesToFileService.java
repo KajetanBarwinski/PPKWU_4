@@ -33,7 +33,7 @@ public class OccurencesToFileService implements OccurencesToFileInterface {
                 result.append("<?xml[Space]version=\"1.0\"[Space]encoding=\"UTF-8\"?>\n" +
                         "<Occurences>\n");
                 for (Map.Entry<String, Integer> entry : input.entrySet()) {
-                    result.append("<").append(entry.getKey().replaceAll(" ", "-")).append(">");
+                    result.append("\t<").append(entry.getKey().replaceAll(" ", "-")).append(">");
                     result.append(entry.getValue());
                     result.append("</").append(entry.getKey().replaceAll(" ", "-")).append(">\n");
                 }
