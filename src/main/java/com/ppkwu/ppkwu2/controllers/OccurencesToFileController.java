@@ -1,5 +1,6 @@
 package com.ppkwu.ppkwu2.controllers;
 
+import com.ppkwu.ppkwu2.services.OccurencesToFileService;
 import com.ppkwu.ppkwu2.services.StringService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,9 @@ public class OccurencesToFileController {
 
         resultMap = (HashMap<String, Integer>) stringService.countCharacterOccurences(str);
 
-        return resultMap.toString();
+        OccurencesToFileService occurencesService = new OccurencesToFileService();
+
+        return occurencesService.showOccurencesInFormat(resultMap,format);
     }
 
     @GetMapping("show_occurences/{format}/{str}/{strtofind}")
@@ -26,6 +29,8 @@ public class OccurencesToFileController {
 
         resultMap = (HashMap<String, Integer>) stringService.countCombinationOccurences(str,strtofind);
 
-        return resultMap.toString();
+        OccurencesToFileService occurencesService = new OccurencesToFileService();
+
+        return occurencesService.showOccurencesInFormat(resultMap,format);
     }
 }
