@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.ppkwu.ppkwu2.serviceinterfaces.OccurencesToFileInterface;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.Map;
 
@@ -25,6 +27,16 @@ public class OccurencesToFileService implements OccurencesToFileInterface {
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
+        }
+        else if (format.equals("xml")){
+            result.append("<?xml[Space]version=\"1.0\"[Space]encoding=\"UTF-8\"?>\n" +
+                    "<Occurences>\n");
+            for(Map.Entry<String, Integer> entry : input.entrySet()){
+                result.append("<").append(entry.getKey().replaceAll(" ","-")).append(">");
+                result.append(entry.getValue());
+                result.append("</").append(entry.getKey().replaceAll(" ","-")).append(">\n");
+            }
+            result.append("</Occurences>");
         }
         return result.toString();
     }
