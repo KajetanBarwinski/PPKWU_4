@@ -15,28 +15,37 @@ public class OccurencesToFileService implements OccurencesToFileInterface {
     @Override
     public String showOccurencesInFormat(Map<String, Integer> input, String format){
         StringBuilder result= new StringBuilder();
-        if(format.equals("txt")){
-            for(Map.Entry<String, Integer> entry : input.entrySet()){
-                result.append(entry.getKey()).append(":").append(entry.getValue()).append("\n");
-            }
-        }
-        else if(format.equals("json")){
-            ObjectMapper objectMapper = new ObjectMapper();
-            try{
-                result.append(objectMapper.writeValueAsString(input));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
-        else if (format.equals("xml")){
-            result.append("<?xml[Space]version=\"1.0\"[Space]encoding=\"UTF-8\"?>\n" +
-                    "<Occurences>\n");
-            for(Map.Entry<String, Integer> entry : input.entrySet()){
-                result.append("<").append(entry.getKey().replaceAll(" ","-")).append(">");
-                result.append(entry.getValue());
-                result.append("</").append(entry.getKey().replaceAll(" ","-")).append(">\n");
-            }
-            result.append("</Occurences>");
+        switch (format) {
+            case "txt":
+                for (Map.Entry<String, Integer> entry : input.entrySet()) {
+                    result.append(entry.getKey()).append(":").append(entry.getValue()).append("\n");
+                }
+                break;
+            case "json":
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    result.append(objectMapper.writeValueAsString(input));
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "xml":
+                result.append("<?xml[Space]version=\"1.0\"[Space]encoding=\"UTF-8\"?>\n" +
+                        "<Occurences>\n");
+                for (Map.Entry<String, Integer> entry : input.entrySet()) {
+                    result.append("<").append(entry.getKey().replaceAll(" ", "-")).append(">");
+                    result.append(entry.getValue());
+                    result.append("</").append(entry.getKey().replaceAll(" ", "-")).append(">\n");
+                }
+                result.append("</Occurences>");
+                break;
+            case "csv":
+                for (Map.Entry<String, Integer> entry : input.entrySet()) {
+                    result.append("\"").append(entry.getKey()).append("\"").append(",").append(entry.getValue()).append("\n");
+                }
+                break;
+            default:
+                return "Wrong file format specified!";
         }
         return result.toString();
     }
