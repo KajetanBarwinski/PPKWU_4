@@ -1,17 +1,65 @@
-# API do analizy stringów (PPKWU zadanie 2) - dokumentacja
+# API do pokazywania wyników zadania 2 w różnych formatach (PPKWU zadanie 3) - dokumentacja
 Z API możemy skorzystać poprzez wysłanie zapytania GET, domyślnie pod adres localhost:8080.
-# Analiza stringa bez kombinacji
-Struktura zapytania powinna wyglądać następująco: http://localhost:8080/count_string/tekst_ktory_chcemy_poddac_analizie
+# Endpoint do konwersji tekstu na podany format
+Do skorzystania z endpointa potrzebujemy trzech parametrów- ciągu tekstowego do analizy, określonego formatu docelowego oraz podciągu tekstowego, którego API ma szukać. Format wymaga określenia w zapytaniu GET jednego z 4 parametrów:
+txt- prosty plik tekstowy
+json- plik formatu JSON
+xml-plik formatu XML
+csv-plik formatu CSV
+Jeżeli format nie zostanie sprecyzowany, API nie wykona zadania i zwróci jedynie komunikat.
+# Przykłady zastosowania
+Wzór zastosowania http://localhost:8080/show_occurences_new/format/tekst_do_wpisania/podtekst_do_szukania
 
-API liczy występowanie dużych i małych liter, cyfr, białych znaków oraz znaków specjalnych. Wyniki liczenia zwracane są jako odpowiedź HTTP w formie mapy przekonwertowanej na tekst.
+R: http://localhost:8080/show_occurences_new/txt/aw2k9&MAaw/aw
 
-Przykładowe użycie:
-![alt text](https://i.imgur.com/3smKiM2.png)
+A:
+Special characters:1
+Whitespaces:0
+Combination:2
+Digits:2
+Lowercase letters:5
+Uppercase letters:2
 
-# Analiza stringa z kombinacjami
-Struktura zapytania powinna wyglądać następująco: http://localhost:8080/count_combinations/tekst_ktory_chcemy_poddac_analizie/kombinacja_ktora_chcemy_zliczac
+R: http://localhost:8080/show_occurences_new/xml/aw2k9&MAaw/aw
 
-Funkcja ta działa identycznie do tej analizującej stringa bez kombinacji, lecz jest jedna różnica. Mapa zwracana w odpowiedzi posiada dodatkowy klucz "Combinations", którego wartością jest ilość zliczonych substringów w stringu
+A:
+<code>
+	<pre>
+	&lt;?xml[Space]version="1.0"[Space]encoding="UTF-8"?&gt;
+		&lt;Occurences&gt;
+		&lt;Special-characters&gt;1&lt;/Special-characters&gt;
+		&lt;Whitespaces&gt;0&lt;/Whitespaces&gt;
+		&lt;Combination&gt;2&lt;/Combination&gt;
+		&lt;Digits&gt;2&lt;/Digits&gt;
+		&lt;Lowercase-letters&gt;5&lt;/Lowercase-letters&gt;
+		&lt;Uppercase-letters&gt;2&lt;/Uppercase-letters&gt;
+	&lt;/Occurences&gt;
+	</pre>
+</code>
 
-Przykładowe użycie:
-![alt text](https://i.imgur.com/TPdFByN.jpg)
+#Endpoint do konwersji formatów
+Do skorzystania z endpointa potrzebujemy trzech parametrów- starego formatu, nowego formatu i ciągu tekstowego do analizy. Formaty muszą nalezeć do któregoś z 4 podanych wyżej tj.txt,csv,json lub xml.
+
+# Przykłady zastosowania
+Wzór zastosowania http://localhost:8080/convert_format/stary_format/nowy_format/tekst_do_analizy
+
+R: /convert_format/csv/xml/"Special characters",1 "Whitespaces",0 "Combination",2 "Digits",2 "Lowercase letters",5 "Uppercase letters",2
+
+A:
+<code>
+	<pre>
+	&lt;?xml[Space]version="1.0"[Space]encoding="UTF-8"?&gt;
+		&lt;Occurences&gt;
+		&lt;Special-characters&gt;1&lt;/Special-characters&gt;
+		&lt;Whitespaces&gt;0&lt;/Whitespaces&gt;
+		&lt;Combination&gt;2&lt;/Combination&gt;
+		&lt;Digits&gt;2&lt;/Digits&gt;
+		&lt;Lowercase-letters&gt;5&lt;/Lowercase-letters&gt;
+		&lt;Uppercase-letters&gt;2&lt;/Uppercase-letters&gt;
+	&lt;/Occurences&gt;
+	</pre>
+</code>
+
+R: /convert_format/txt/json/Special characters:1 Whitespaces:0 Combination:2 Digits:2 Lowercase letters:5 Uppercase letters:2
+
+A: {"Special characters":1,"Whitespaces":0,"Combination":2,"Digits":2,"Lowercase letters":5,"Uppercase letters":2}
