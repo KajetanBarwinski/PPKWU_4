@@ -25,8 +25,8 @@ public class FormatConversionController {
         return occurencesService.showOccurencesInFormat(resultMap,format);
     }
 
-    @GetMapping("convert_format/{newformat}/{str}")
-    public String convertFormat(@PathVariable String newformat, @PathVariable String str){
+    @GetMapping("convert_format/{oldformat}/{newformat}/{str}")
+    public String convertFormat(@PathVariable String oldformat, @PathVariable String newformat, @PathVariable String str){
         FormatConversionService formatConversionService = new FormatConversionService();
         List<String> allowedFormats = Arrays.asList("txt","csv","json","xml");
 
@@ -34,6 +34,6 @@ public class FormatConversionController {
             return "No such format supported!";
         }
 
-        return formatConversionService.convertFormat(str,newformat);
+        return formatConversionService.convertFormat(str,oldformat,newformat);
     }
 }
