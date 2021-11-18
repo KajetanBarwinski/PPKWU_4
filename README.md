@@ -37,7 +37,7 @@ A:
 	</pre>
 </code>
 
-#Endpoint do konwersji formatów
+# Endpoint do konwersji formatów z jednego na drugi
 Do skorzystania z endpointa potrzebujemy trzech parametrów- starego formatu, nowego formatu i ciągu tekstowego do analizy. Formaty muszą nalezeć do któregoś z 4 podanych wyżej tj.txt,csv,json lub xml.
 
 # Przykłady zastosowania
