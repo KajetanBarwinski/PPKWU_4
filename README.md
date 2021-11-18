@@ -1,4 +1,4 @@
-# API do pokazywania wyników zadania 2 w różnych formatach (PPKWU zadanie 3) - dokumentacja
+# API do konwersji wyników zadania 3 do innych formatów (PPKWU zadanie 4) - dokumentacja
 Z API możemy skorzystać poprzez wysłanie zapytania GET, domyślnie pod adres localhost:8080.
 # Endpoint do konwersji tekstu na podany format
 Do skorzystania z endpointa potrzebujemy trzech parametrów- ciągu tekstowego do analizy, określonego formatu docelowego oraz podciągu tekstowego, którego API ma szukać. Format wymaga określenia w zapytaniu GET jednego z 4 parametrów:
