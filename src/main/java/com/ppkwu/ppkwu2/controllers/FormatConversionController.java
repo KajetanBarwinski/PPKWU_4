@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 public class FormatConversionController {
-    @GetMapping("show_occurences/{format}/{str}/{strtofind}")
+    @GetMapping("show_occurences_new/{format}/{str}/{strtofind}")
     public String countCharacterOccurencesWithCombinations(@PathVariable String format, @PathVariable String str, @PathVariable String strtofind) {
         StringService stringService = new StringService();
         HashMap<String, Integer> resultMap;
