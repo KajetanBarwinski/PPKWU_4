@@ -1,12 +1,15 @@
 package com.ppkwu.ppkwu2.controllers;
 
+import com.ppkwu.ppkwu2.services.FormatConversionService;
 import com.ppkwu.ppkwu2.services.OccurencesToFileService;
 import com.ppkwu.ppkwu2.services.StringService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class FormatConversionController {
@@ -24,6 +27,13 @@ public class FormatConversionController {
 
     @GetMapping("convert_format/{newformat}/{str}")
     public String convertFormat(@PathVariable String newformat, @PathVariable String str){
-        return "";
+        FormatConversionService formatConversionService = new FormatConversionService();
+        List<String> allowedFormats = Arrays.asList("txt","csv","json","xml");
+
+        if(!allowedFormats.contains(newformat)){
+            return "No such format supported!";
+        }
+
+        return formatConversionService.convertFormat(str,newformat);
     }
 }
